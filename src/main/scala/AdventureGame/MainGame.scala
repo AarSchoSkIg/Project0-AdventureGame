@@ -20,7 +20,7 @@ object MainGame {
       println("Welcome to Grimm Tales! Press enter to start")
       println("Grimm Tales is an exciting adventure game filled with monsters, exploration, combat, and treasure!" +
         "press enter to continue.")
-      
+
 
     }
 
