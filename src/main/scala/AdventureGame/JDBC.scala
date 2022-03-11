@@ -1,7 +1,6 @@
 package AdventureGame
 
-import java.sql.DriverManager
-import java.sql.Connection
+import java.sql.{Connection, DriverManager, PreparedStatement, SQLException, Statement}
 
 object JDBC {
   def main(args: Array[String]): Unit = {
@@ -20,7 +19,7 @@ object JDBC {
       Class.forName(driver)
       connection = DriverManager.getConnection(url, username, password)
 
-      // create the statement, and run the select query
+      // created a statement for getting all rows from MonstersandSpecs Table, and ran the select query
       val statement = connection.createStatement()
       val resultSet = statement.executeQuery("SELECT * FROM monstersandspecs;")
       while ( resultSet.next() ) {
@@ -29,6 +28,22 @@ object JDBC {
     } catch {
       case e: Throwable => e.printStackTrace()
     }
-    connection.close()
+    //create an update statement to update fields in MonstersandSPecs for adding super secret boss
+    try {
+      val sqlUpdate = "UPDATE MONSTERINDEPTHSTATS " + "SET defense = ? " + "WHERE detailsid = ?"
+      val  pstmt: PreparedStatement = connection.prepareStatement(sqlUpdate)
+
+      var defense= 2
+      val detailsId: Int = 1
+
+      pstmt.setInt(1, defense)
+      pstmt.setInt(2, detailsId)
+      var rowAffected = pstmt.executeUpdate()
+      println(StringFormat("Row affected %d", rowAffected))
+      pstmt.close()
+    }catch {
+      case e: Throwable => e.printStackTrace()
+    }
+
   }
 }

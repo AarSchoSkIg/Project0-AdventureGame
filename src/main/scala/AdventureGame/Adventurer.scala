@@ -1,5 +1,0 @@
-package AdventureGame
-
-object Adventurer {
-
-}
