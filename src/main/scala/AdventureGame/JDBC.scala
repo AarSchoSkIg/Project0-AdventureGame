@@ -4,7 +4,7 @@ import java.sql.DriverManager
 import java.sql.Connection
 
 object JDBC {
-  def main(args: Array[String]) {
+  def main(args: Array[String]): Unit = {
     // connect to the database named "mysql" on the localhost
     //val driver = "com.mysql.cj.jdbc.Driver"
     val driver = "com.mysql.cj.jdbc.Driver"
@@ -27,7 +27,7 @@ object JDBC {
         println(resultSet.getString(1)+", " +resultSet.getString(2) +", " +resultSet.getString(3) +", " +resultSet.getString(4))
       }
     } catch {
-      case e: Throwable => e.printStackTrace
+      case e: Throwable => e.printStackTrace()
     }
     connection.close()
   }

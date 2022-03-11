@@ -1,3 +1,4 @@
 [debug] not up to date. inChanged = true, force = false
 [debug] Updating ProjectRef(uri("file:/C:/Users/aaron/Documents/revature-trainingFeb282022/ProjectsBigData/githubrepositoriesforProjects/Project0-AdventureGame/project/"), "project0-adventuregame-build")...
+[warn] Unrecognized repository Scala Plugin Bundled Repository, ignoring it
 [debug] Done updating ProjectRef(uri("file:/C:/Users/aaron/Documents/revature-trainingFeb282022/ProjectsBigData/githubrepositoriesforProjects/Project0-AdventureGame/project/"), "project0-adventuregame-build")
