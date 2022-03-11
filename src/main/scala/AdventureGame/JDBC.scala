@@ -16,7 +16,7 @@ object JDBC {
     // there's probably a better way to do this
     var connection: Connection = null
 
-    //creating a table for Player character and inserting into that table value of what the player chose to have as well as inventory and weapons
+    //To do: (delete up to comment to remain after code is made) Comment to remain creating a table for Player character and inserting into that table value of what the player chose to have as well as inventory and weapons
 
     //making a connection to MySQL adventurewikidb
     try {
