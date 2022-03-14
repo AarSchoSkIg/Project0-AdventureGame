@@ -1,8 +1,6 @@
 package AdventureGame
 
-import org.apache.arrow.util.AutoCloseables.close
-
-import java.sql.{Connection, DriverManager, PreparedStatement, SQLException, Statement}
+import java.sql.{Connection, DriverManager, PreparedStatement}
 
 object JDBC {
   def main(args: Array[String]): Unit = {
@@ -16,18 +14,16 @@ object JDBC {
     // there's probably a better way to do this
     var connection: Connection = null
 
-    //To do: (delete up to comment to remain after code is made) Comment to remain creating a table for Player character and inserting into that table value of what the player chose to have as well as inventory and weapons
-
     //making a connection to MySQL adventurewikidb
     try {
       Class.forName(driver)
       connection = DriverManager.getConnection(url, username, password)
 
       // created a statement for getting all rows from MonstersandSpecs Table, and ran the select query
-      val statement = connection.createStatement()
-      val resultSet = statement.executeQuery("SELECT * FROM monstersandspecs;")
-      while (resultSet.next()) {
-        println(resultSet.getString(1) + ", " + resultSet.getString(2) + ", " + resultSet.getString(3) + ", " + resultSet.getString(4))
+      val statement1 = connection.createStatement()
+      val resultSet1 = statement1.executeQuery("SELECT * FROM monstersandspecs;")
+      while (resultSet1.next()) {
+        println(resultSet1.getString(1) + ", " + resultSet1.getString(2) + ", " + resultSet1.getString(3) + ", " + resultSet1.getString(4))
       }
       connection.close()
     } catch {
@@ -39,10 +35,10 @@ object JDBC {
       connection = DriverManager.getConnection(url, username, password)
 
       // created a statement for getting all rows from MONSTERINDEPTHSTATS Table, and ran the select query
-      val statement1 = connection.createStatement()
-      val resultSet1 = statement1.executeQuery("SELECT * FROM MONSTERINDEPTHSTATS;")
-      while (resultSet1.next()) {
-        println(resultSet1.getString(1) + ", " + resultSet1.getString(2) + ", " + resultSet1.getString(3) + ", " + resultSet1.getString(4))
+      val statement2 = connection.createStatement()
+      val resultSet2 = statement2.executeQuery("SELECT * FROM MONSTERINDEPTHSTATS;")
+      while (resultSet2.next()) {
+        println(resultSet2.getString(1) + ", " + resultSet2.getString(2) + ", " + resultSet2.getString(3) + ", " + resultSet2.getString(4))
       }
       connection.close()
 
@@ -62,10 +58,10 @@ object JDBC {
 
       pstmt.close()
       //view Monsterindepthstats table after update of defense to 1
-      val statement2 = connection.createStatement()
-      val resultSet2 = statement2.executeQuery("SELECT * FROM MONSTERINDEPTHSTATS;")
-      while (resultSet2.next()) {
-        println(resultSet2.getString(1) + ", " + resultSet2.getString(2) + ", " + resultSet2.getString(3) + ", " + resultSet2.getString(4))
+      val statement3 = connection.createStatement()
+      val resultSet3 = statement3.executeQuery("SELECT * FROM MONSTERINDEPTHSTATS;")
+      while (resultSet3.next()) {
+        println(resultSet3.getString(1) + ", " + resultSet3.getString(2) + ", " + resultSet3.getString(3) + ", " + resultSet3.getString(4))
       }
     }
       catch
