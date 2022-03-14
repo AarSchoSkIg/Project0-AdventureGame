@@ -6,45 +6,21 @@ import java.sql.{Connection, DriverManager, PreparedStatement, Statement}
 
 object JDBC {
   def main(args: Array[String]): Unit = {
-    // connect to the database named "mysql" on the localhost
-    //val driver = "com.mysql.cj.jdbc.Driver"
-    val driver = "com.mysql.cj.jdbc.Driver"
-    val url = "jdbc:mysql://localhost/adventurewikidb"
-    val username = "root"
-    val password = "L0nkL1nkl3!"
 
-    // there's probably a better way to do this
-    var connection: Connection = null
 
-    //making a connection to MySQL adventurewikidb
 
-    try {
-      Class.forName(driver)
-      connection = DriverManager.getConnection(url, username, password)
-      //Issue to fix later: This try catch block is creating two rows of Character data in the table when I only want one
-      val statement = connection.createStatement()
-      println("Inserting Adventurer details into table: ")
-      var insertSQL = "INSERT INTO ADVENTURER VALUES (0, 'Hero', 15, 0, 'ShortSword', Null, Null)"
-
-      connection.close()
-    }
-      catch {
-        case e: Throwable => e.printStackTrace()
-      }
 
       try {
-        Class.forName(driver)
-        connection = DriverManager.getConnection(url, username, password)
-      // created a statement for getting all rows from Adventurer Table, and ran the select query
-      val statement1 = connection.createStatement()
-      val resultSet1 = statement1.executeQuery("SELECT * FROM Adventurer;")
-      while (resultSet1.next()) {
+        // created a statement for getting all rows from Adventurer Table, and ran the select query
+        val statement1 = connection.createStatement()
+        val resultSet1 = statement1.executeQuery("SELECT * FROM Adventurer;")
+        while (resultSet1.next()) {
         println(resultSet1.getString(1) + ", " + resultSet1.getString(2) + ", " + resultSet1.getString(3) + ", " + resultSet1.getString(4) + "," + resultSet1.getString(5) + "," + resultSet1.getString(6) + "," + resultSet1.getString(7))
-      }
-      connection.close()
-    } catch {
-      case e: Throwable => e.printStackTrace()
-    }
+        }
+        connection.close()
+      } catch {
+        case e: Throwable => e.printStackTrace()
+        }
     //create a statement to view the Monsterindepthstats table before defense field is updated
     try {
       Class.forName(driver)
@@ -94,7 +70,7 @@ object JDBC {
       def deleteTable(): Unit = {
         val gameWonScreen = println("You have won the game your character will now be deleted, Thank you for playing. Please enter 1 to exit game")
         val gameExitCharacterDeletion = scala.io.StdIn.readInt()
-        
+
 
         }
       }
