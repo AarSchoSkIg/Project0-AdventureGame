@@ -1,6 +1,8 @@
 package AdventureGame
 
-import java.sql.{Connection, DriverManager, PreparedStatement}
+import AdventureGame.AdventurerTable.queryTable
+
+import java.sql.{Connection, DriverManager, PreparedStatement, Statement}
 
 object JDBC {
   def main(args: Array[String]): Unit = {
@@ -15,15 +17,29 @@ object JDBC {
     var connection: Connection = null
 
     //making a connection to MySQL adventurewikidb
+
     try {
       Class.forName(driver)
       connection = DriverManager.getConnection(url, username, password)
+      //Issue to fix later: This try catch block is creating two rows of Character data in the table when I only want one
+      val statement = connection.createStatement()
+      println("Inserting Adventurer details into table: ")
+      var insertSQL = "INSERT INTO ADVENTURER VALUES (0, 'Hero', 15, 0, 'ShortSword', Null, Null)"
 
-      // created a statement for getting all rows from MonstersandSpecs Table, and ran the select query
+      connection.close()
+    }
+      catch {
+        case e: Throwable => e.printStackTrace()
+      }
+
+      try {
+        Class.forName(driver)
+        connection = DriverManager.getConnection(url, username, password)
+      // created a statement for getting all rows from Adventurer Table, and ran the select query
       val statement1 = connection.createStatement()
-      val resultSet1 = statement1.executeQuery("SELECT * FROM monstersandspecs;")
+      val resultSet1 = statement1.executeQuery("SELECT * FROM Adventurer;")
       while (resultSet1.next()) {
-        println(resultSet1.getString(1) + ", " + resultSet1.getString(2) + ", " + resultSet1.getString(3) + ", " + resultSet1.getString(4))
+        println(resultSet1.getString(1) + ", " + resultSet1.getString(2) + ", " + resultSet1.getString(3) + ", " + resultSet1.getString(4) + "," + resultSet1.getString(5) + "," + resultSet1.getString(6) + "," + resultSet1.getString(7))
       }
       connection.close()
     } catch {
@@ -35,6 +51,7 @@ object JDBC {
       connection = DriverManager.getConnection(url, username, password)
 
       // created a statement for getting all rows from MONSTERINDEPTHSTATS Table, and ran the select query
+      println("Viewing MonsterINDEPTHSTATS table")
       val statement2 = connection.createStatement()
       val resultSet2 = statement2.executeQuery("SELECT * FROM MONSTERINDEPTHSTATS;")
       while (resultSet2.next()) {
@@ -69,5 +86,18 @@ object JDBC {
         case e: Throwable => e.printStackTrace()
       }
     //To do: (delete up to comment to remain after code is made) Comment to remain deleting Player table after game is won or after player quits
+    try {
+      Class.forName(driver)
+      connection = DriverManager.getConnection(url, username, password)
+
+      val statement4 = connection.createStatement()
+      def deleteTable(): Unit = {
+        val gameWonScreen = println("You have won the game your character will now be deleted, Thank you for playing. Please enter 1 to exit game")
+        val gameExitCharacterDeletion = scala.io.StdIn.readInt()
+        
+
+        }
+      }
+    }
     }
 }

@@ -4,6 +4,7 @@ object MainGame {
   //Set up of taking user input and initial variables
   scala.io.StdIn.readLine("")
 
+  var playerName: String = scala.io.StdIn.readLine("Enter the name for your Character.")
   protected var AdventurerHP: Int = 0
   protected var Adventurerdefense: Int = 0
   var Adventurerloot: String = _
