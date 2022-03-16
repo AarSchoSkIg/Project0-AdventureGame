@@ -195,8 +195,19 @@ object DungeonMasterDesigner {
   }
     //method for viewing Rewards in Dungeon
   def viewRewards(): Unit = {
-    var pstmt3 = connection.prepareStatement("SELECT * FROM Reward")
-    println("ALl rewards in dungeon are: " + pstmt3)
+    try {
+      var statmnt4 = connection.createStatement()
+      val resultSet = statmnt4.executeQuery("Select * From reward")
+      while (resultSet.next()) {
+        val rewardID = resultSet.getInt("rewardID")
+        val loot = resultSet.getString("monster")
+        val location = resultSet.getInt("health")
+        val mapAreaID = resultSet.getInt("mapAreaID")
+        println(("ALl rewards in dungeon are: " + "rewardID: " + rewardID, "loot: " + loot, "location: " + location, "mapAreaID: " + mapAreaID))
+      }
+    } catch {
+      case e: SQLException => e.printStackTrace();
+    }
   }
 
     //Option 5 deletes record of dungeon created
