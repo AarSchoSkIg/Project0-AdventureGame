@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="06a5fb4d-8b3d-4145-803f-5940ad33c70f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/AdventureGame/Adventurer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/AdventureGame/Adventurer.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/AdventureGame/DBConnecter.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/AdventureGame/DBConnecter.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/AdventureGame/DBController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/AdventureGame/DBController.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/AdventureGame/DungeonMasterDesigner.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/AdventureGame/DungeonMasterDesigner.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,9 +56,9 @@
     <property name="scala_project_settings_configurable.last_selected_tab_index" value="7" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.scala.settings.ScalaProjectSettingsConfigurable" />
   </component>
-  <component name="RunManager" selected="Application.JDBC">
-    <configuration name="JDBC" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="AdventureGame.JDBC" />
+  <component name="RunManager" selected="Application.DungeonMasterDesigner">
+    <configuration name="DungeonMasterDesigner" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="AdventureGame.DungeonMasterDesigner" />
       <module name="Project0-AdventureGame" />
       <shortenClasspath name="MANIFEST" />
       <extension name="coverage">
@@ -81,9 +84,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.DungeonMasterDesigner" />
+      <item itemvalue="Application.JDBCDriver" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.JDBC" />
+        <item itemvalue="Application.DungeonMasterDesigner" />
         <item itemvalue="Application.JDBCDriver" />
       </list>
     </recent_temporary>

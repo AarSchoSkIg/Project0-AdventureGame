@@ -1,0 +1,4 @@
+"MapAreaID";"Location";"Monster";"EnemyID";"Loot"
+1;"Cave Entrance";"Goblin";1;""
+2;"Cave Room 1";"Chief Goblin";2;""
+3;"Trophy Room";"";0;"Trophy"

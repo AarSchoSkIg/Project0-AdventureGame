@@ -1,0 +1,3 @@
+"EnemyID";"Monster";"Health";"Attack";"Defense";"Location";"MapAreaID"
+1;"Goblin";5;5;0;"Cave Entrance";1
+2;"Chief Goblin";15;10;5;"Cave Room 1";2

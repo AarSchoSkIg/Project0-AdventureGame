@@ -7,7 +7,7 @@ class DBConnecter {
 
   // connect to the database named "mysql" on the localhost
   val driver = "com.mysql.cj.jdbc.Driver"
-  val url = "jdbc:mysql://localhost/adventurewikidb"
+  val url = "jdbc:mysql://localhost/dungeondesignerdb"
   val username = "root"
   var connection: Connection = null
   val password = "L0nkL1nkl3!"

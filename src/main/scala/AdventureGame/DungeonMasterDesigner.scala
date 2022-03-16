@@ -1,6 +1,6 @@
 package AdventureGame
 
-import AdventureGame.DBController.{connection, connectionToDB, disconnectFromDB}
+import AdventureGame.DBController.{connection, connectionToDB, disconnectFromDB, resultSet}
 
 import java.sql.Connection
 import scala.util.control.Breaks.break
@@ -14,7 +14,7 @@ object DungeonMasterDesigner {
 
     connectionToDB()
     println("Welcome to the Dungeon Master Dungeon designer WorkSheet. This Worksheet is for creating a dungeon, adding components to that dungeon, and having it stored in one place")
-    var dungeonMaster = println("To start: Please enter your Name")
+    var dungeonMaster: Unit = println("To start: Please enter your Name")
     dungeonMaster = scala.io.StdIn.readLine()
 
     //Initial variable setup
@@ -25,10 +25,11 @@ object DungeonMasterDesigner {
     var monster = 0
     var loot = 0
     var rooms = 0
-
+    var rewardID = 0
+    var mapAreaID = 0
     //When dungeon master wants to add new dungeon entry
     while (createDungeons == true) {
-      println("Press 1 to create a dungeon, 2 to view Monsters in dungeon, 3 to view rewardItems in dungeon, 5 if you wanna delete a the dungeon, Press 6 if you want to quit")
+      println("Press 1 to create a dungeon, Press 2 update existing dungeon record, Press 3 to view Monsters in dungeon, 4 if you wanna delete a the dungeon, Press 5 if you want to quit")
       choice = scala.io.StdIn.readLine()
       while (choice == "1") {
         if (dungeon == "") {
@@ -39,9 +40,10 @@ object DungeonMasterDesigner {
           loot = scala.io.StdIn.readInt()
           println("Enter in the number of rooms for this dungeon: ie Cave Entrance")
           rooms = scala.io.StdIn.readInt()
-          createNewDungeon(dungeonID: Int, monster: Int, loot: Int, rooms: Int)
-          var doneCreating = println("Would you like to create another dungeon, y or n")
-          doneCreating = scala.io.StdIn.readLine()
+          rewardID = rewardID + 1
+          mapAreaID = mapAreaID + 1
+          createNewDungeon (dungeonID: Int, monster: Int, loot: Int, rooms: Int, rewardID: Int, mapAreaID: Int)
+          var doneCreating = scala.io.StdIn.readLine()
           if (doneCreating == "y") {
             dungeon = "1"
           }
@@ -57,49 +59,65 @@ object DungeonMasterDesigner {
         }
       }
       if (choice == "2") {
-        viewMonsters()
+        updateExistingDungeon()
       }
       else if (choice == "3") {
-        viewRewards()
-        break
+        viewMonsters()
       }
       else if (choice == "4") {
-
+        deleteDungeon(dungeonID, connection)
       }
       else if (choice == "5") {
-        deleteDungeon(dungeonID, connection)
-        break()
-      } else if (choice == "6") {
         println("Now existing Program")
-        break()
+        println("Your Dungeon is going to be a phenomenal masterpiece, just like you!!! Thank you for using the software.")
+        disconnectFromDB()
+        break
       }
 
       /* else if (option == "doneLog")
          println("")*/
       else {
         println("Invalid option!")
-        break
+        choice = "5"
       }
 
     }
 
-    println("Your Dungeon is going to be a phenomenal masterpiece, just like you!!! Thank you for using the software.")
-    disconnectFromDB()
+
+
   }
 
 
   //end of main method
   //dungeon create and insert values into table in DB
-  def createNewDungeon(dungeonID: Int, enemy: Int, loot: Int, rooms: Int) = {
-    var pstmt = connection.prepareStatement("Inset Into dungeons(dungeonID, monster, loot, rooms) Values(????)")
-    try{
+  def createNewDungeon(dungeonID: Int, monster: Int, loot: Int, rooms: Int, rewardID: Int, mapAreaID: Int): Unit = {
+    var pstmt = connection.prepareStatement("Insert Into dungeon (dungeonID, monster, loot, rooms, rewardID, mapAreaID) Values(?, ?, ?, ?, ?, ?)")
+    try {
       pstmt.setInt(1, dungeonID)
-      pstmt.setInt(2, enemy)
+      pstmt.setInt(2, monster)
       pstmt.setInt(3, loot)
       pstmt.setInt(4, rooms)
+      pstmt.setInt(5, rewardID)
+      pstmt.setInt(6, mapAreaID)
       pstmt.executeUpdate()
-      var pstmt1 = connection.prepareStatement("Select * From dungeons")
-      println("The Dungeon has been created successfully: " + pstmt1)
+      println("The Dungeon has been created successfully: " + pstmt)
+    } /*catch {
+      case e: IllegalArgumentException => println("Invalid Input!! Dungeon did not properly create. Would you like to create another dungeon, y or n?")
+  }*/
+    try {
+      var statmnt = connection.createStatement()
+      val resultSet = statmnt.executeQuery("Select * From dungeon where dungeonId = 1")
+      while (resultSet.next()) {
+        val dungeonID = resultSet.getInt("dungeonID")
+        val monster = resultSet.getInt("monster")
+        val loot = resultSet.getInt("loot")
+        val rooms = resultSet.getInt("rooms")
+        val rewardID = resultSet.getInt("rewardID")
+        val mapAreaID = resultSet.getInt("mapAreaID")
+        println(dungeonID, monster, loot, rooms, rewardID, mapAreaID)
+      }
+    } catch {
+      case e: IllegalArgumentException => println("Invalid Input!! Dungeon did not properly create. Would you like to create another dungeon, y or n?")
     }
   }
 
@@ -115,7 +133,7 @@ object DungeonMasterDesigner {
     println("ALl rewards in dungeon are: " + pstmt3)
   }
 
-    //OPTION 1 step 3: METHOD THAT INSERTS A RECORD INTO THE WORKOUTS TABLE
+    //Option 5 deletes record of dungeon created
 
   def deleteDungeon (dungeonID: Int, connection: Connection): Unit = {
     println("There is no going back after you deleted your dungeon, are you sure? y or n")

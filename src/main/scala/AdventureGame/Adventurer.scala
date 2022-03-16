@@ -1,3 +1,4 @@
+/*
 /*package AdventureGame
 
 
@@ -50,4 +51,4 @@ class Adventurer extends Creature {
 
 
 
-}
+}*/
