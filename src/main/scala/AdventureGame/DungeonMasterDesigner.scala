@@ -29,7 +29,7 @@ object DungeonMasterDesigner {
     var mapAreaID = 0
     //When dungeon master wants to add new dungeon entry
     while (createDungeons == true) {
-      println("Press 1 to create a dungeon, Press 2 update existing dungeon record, Press 3 to view Monsters in dungeon, 4 if you wanna delete a the dungeon, Press 5 if you want to quit")
+      println("Press 1 to create a dungeon, Press 2 update existing dungeon record, Press 3 to view Rewards in dungeon, 4 if you wanna delete a the dungeon, Press 5 if you want to quit")
       choice = scala.io.StdIn.readLine()
       while (choice == "1") {
         if (dungeon == "") {
@@ -62,7 +62,7 @@ object DungeonMasterDesigner {
         updateExistingDungeon()
       }
       else if (choice == "3") {
-        viewMonsters()
+        viewRewards()
       }
       else if (choice == "4") {
         deleteDungeon(dungeonID, connection)
@@ -200,8 +200,8 @@ object DungeonMasterDesigner {
       val resultSet = statmnt4.executeQuery("Select * From reward")
       while (resultSet.next()) {
         val rewardID = resultSet.getInt("rewardID")
-        val loot = resultSet.getString("monster")
-        val location = resultSet.getInt("health")
+        val loot = resultSet.getString("loot")
+        val location = resultSet.getString("location")
         val mapAreaID = resultSet.getInt("mapAreaID")
         println(("ALl rewards in dungeon are: " + "rewardID: " + rewardID, "loot: " + loot, "location: " + location, "mapAreaID: " + mapAreaID))
       }
