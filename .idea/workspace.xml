@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06a5fb4d-8b3d-4145-803f-5940ad33c70f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/scala/AdventureGame/DungeonMasterDesigner.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/AdventureGame/AdventurerTable.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/AdventureGame/AdventurerTable.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/AdventureGame/JDBC.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/AdventureGame/JDBC.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/AdventureGame/AdventurerTable.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/AdventureGame/Adventurer.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/AdventureGame/JDBC.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/AdventureGame/MainGame.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/AdventureGame/MainGame.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/AdventureGame/dbConnecter.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/AdventureGame/DBConnecter.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

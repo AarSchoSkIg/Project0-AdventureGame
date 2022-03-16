@@ -1,17 +1,19 @@
-package AdventureGame
+/*package AdventureGame
 
 object MainGame {
   //Set up of taking user input and initial variables
   scala.io.StdIn.readLine("")
 
-  var playerName: String = scala.io.StdIn.readLine("Enter the name for your Character.")
-  protected var AdventurerHP: Int = 0
-  protected var Adventurerdefense: Int = 0
-  var Adventurerloot: String = _
-  var Adventurerweapon: String = _
-  var attack: Int = 0
+  var adventurerName: String = _
+  var adventurerHealth: Int = 30
+  var adventurerAttack: Int = 15
+  var adventurerDefense: Int = 10
+  var monsterType: String = _
+  var monsterHealth: Int = 0
+  var monsterAttack: Int = 0
+  var monsterDefense: Int = 0
+  val loot: String = "Trophy"
   var location: String = _
-  var monsterHP: Int = 0
 
 
   //main game inital start simple version
@@ -27,4 +29,4 @@ object MainGame {
 
 
   }
-}
+}*/
