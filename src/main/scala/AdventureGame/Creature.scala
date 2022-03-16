@@ -1,3 +1,4 @@
+/*
 package AdventureGame
 
 class Creature {
@@ -51,3 +52,4 @@ class Creature {
   }
 
 }
+*/

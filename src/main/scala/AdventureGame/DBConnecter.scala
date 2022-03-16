@@ -33,7 +33,7 @@ class DBConnecter {
       }
   }
 
-  protected def disconnectFromDB(): Unit = {
+  def disconnectFromDB(): Unit = {
     if (!connection.isClosed)
       connection.close();
     if (resultSet != null)

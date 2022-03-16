@@ -1,4 +1,6 @@
-/*package AdventureGame
+/*Decided to comment out this object to maybe use code later
+
+package AdventureGame
 
 object MainGame {
   //Set up of taking user input and initial variables
