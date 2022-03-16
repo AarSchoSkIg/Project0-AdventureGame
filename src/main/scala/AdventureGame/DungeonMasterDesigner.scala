@@ -22,7 +22,7 @@ object DungeonMasterDesigner {
     var choice = ""
     var dungeon = ""
     var dungeonID = 0
-    var monsters = 0
+    var monster = 0
     var loot = 0
     var rooms = 0
 
@@ -34,12 +34,12 @@ object DungeonMasterDesigner {
         if (dungeon == "") {
           dungeonID = dungeonID + 1
           println("Enter in the number of monsters to add for this dungeon")
-          monsters = scala.io.StdIn.readInt()
+          monster = scala.io.StdIn.readInt()
           println("Enter in the amount of loot to add for this dungeon")
           loot = scala.io.StdIn.readInt()
           println("Enter in the number of rooms for this dungeon: ie Cave Entrance")
           rooms = scala.io.StdIn.readInt()
-          createNewDungeon(dungeonID: Int, monsters: Int, loot: Int, rooms: Int)
+          createNewDungeon(dungeonID: Int, monster: Int, loot: Int, rooms: Int)
           var doneCreating = println("Would you like to create another dungeon, y or n")
           doneCreating = scala.io.StdIn.readLine()
           if (doneCreating == "y") {
@@ -90,11 +90,11 @@ object DungeonMasterDesigner {
 
   //end of main method
   //dungeon create and insert values into table in DB
-  def createNewDungeon(dungeonID: Int, monsters: Int, loot: Int, rooms: Int) = {
-    var pstmt = connection.prepareStatement("Inset Into dungeons(dungeonID, monsters, loot, rooms) Values(????)")
+  def createNewDungeon(dungeonID: Int, enemy: Int, loot: Int, rooms: Int) = {
+    var pstmt = connection.prepareStatement("Inset Into dungeons(dungeonID, monster, loot, rooms) Values(????)")
     try{
       pstmt.setInt(1, dungeonID)
-      pstmt.setInt(2, monsters)
+      pstmt.setInt(2, enemy)
       pstmt.setInt(3, loot)
       pstmt.setInt(4, rooms)
       pstmt.executeUpdate()
@@ -105,7 +105,7 @@ object DungeonMasterDesigner {
 
   //method for viewing Monsters in Dungeon
   def viewMonsters(): Unit = {
-    var pstmt2 = connection.prepareStatement("SELECT * FROM monster")
+    var pstmt2 = connection.prepareStatement("SELECT * FROM Enemy")
     println("ALl monsters in dungeon are: " + pstmt2)
 
   }
