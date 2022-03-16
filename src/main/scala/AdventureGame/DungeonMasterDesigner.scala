@@ -2,7 +2,7 @@ package AdventureGame
 
 import AdventureGame.DBController.{connection, connectionToDB, disconnectFromDB, resultSet}
 
-import java.sql.Connection
+import java.sql.{Connection, SQLException}
 import scala.util.control.Breaks.break
 
 
@@ -42,7 +42,7 @@ object DungeonMasterDesigner {
           rooms = scala.io.StdIn.readInt()
           rewardID = rewardID + 1
           mapAreaID = mapAreaID + 1
-          createNewDungeon (dungeonID: Int, monster: Int, loot: Int, rooms: Int, rewardID: Int, mapAreaID: Int)
+          createNewDungeon(dungeonID: Int, monster: Int, loot: Int, rooms: Int, rewardID: Int, mapAreaID: Int)
           var doneCreating = scala.io.StdIn.readLine()
           if (doneCreating == "y") {
             dungeon = "1"
@@ -84,7 +84,6 @@ object DungeonMasterDesigner {
     }
 
 
-
   }
 
 
@@ -117,17 +116,84 @@ object DungeonMasterDesigner {
         println(dungeonID, monster, loot, rooms, rewardID, mapAreaID)
       }
     } catch {
+      case e: SQLException => e.printStackTrace();
+    }
+  }
+
+  def updateExistingDungeon(): Unit = {
+    //reset update defense back to 0
+    try {
+      var statmnt1 = connection.createStatement()
+      var updateEnemy = "Update enemy Set defense = 0 WHERE enemyid = 1"
+      statmnt1.executeUpdate(updateEnemy)
+      println("Table reset  back to 0 successfully")
+
+    }
+
+    try {
+      println("values of enemy goblin before update")
+      var statmnt2 = connection.createStatement()
+      val resultSet = statmnt2.executeQuery("Select * From enemy where enemyid = 1")
+      while (resultSet.next()) {
+        val enemyID = resultSet.getInt("enemyID")
+        val monster = resultSet.getString("monster")
+        val health = resultSet.getInt("health")
+        val attack = resultSet.getInt("attack")
+        val defense = resultSet.getInt("defense")
+        val location = resultSet.getString("Location")
+        val mapAreaID = resultSet.getInt("mapAreaID")
+        println(enemyID, monster, health, attack, defense, location, mapAreaID)
+      }
+    }
+    try {
+      var statmnt3 = connection.createStatement()
+      var updateEnemy = "Update enemy Set defense = 2 WHERE enemyid = 1"
+      statmnt3.executeUpdate(updateEnemy)
+      println("Table Updated successfully")
+
+    }
+    //view the updated values in enemy table
+    try {
+      var statmnt1 = connection.createStatement()
+      val resultSet = statmnt1.executeQuery("Select * From enemy")
+      while (resultSet.next()) {
+        val enemyID = resultSet.getInt("enemyID")
+        val monster = resultSet.getString("monster")
+        val health = resultSet.getInt("health")
+        val attack = resultSet.getInt("attack")
+        val defense = resultSet.getInt("defense")
+        val location = resultSet.getString("Location")
+        val mapAreaID = resultSet.getInt("mapAreaID")
+        println(enemyID, monster, health, attack, defense, location, mapAreaID)
+      }
+    } catch {
       case e: IllegalArgumentException => println("Invalid Input!! Dungeon did not properly create. Would you like to create another dungeon, y or n?")
     }
+
+
   }
 
   //method for viewing Monsters in Dungeon
   def viewMonsters(): Unit = {
-    var pstmt2 = connection.prepareStatement("SELECT * FROM Enemy")
-    println("ALl monsters in dungeon are: " + pstmt2)
 
+    try {
+      var statmnt4 = connection.createStatement()
+      val resultSet = statmnt4.executeQuery("Select * From enemy")
+      while (resultSet.next()) {
+        val enemyID = resultSet.getInt("enemyID")
+        val monster = resultSet.getString("monster")
+        val health = resultSet.getInt("health")
+        val attack = resultSet.getInt("attack")
+        val defense = resultSet.getInt("defense")
+        val location = resultSet.getString("Location")
+        val mapAreaID = resultSet.getInt("mapAreaID")
+        println("Enemy table: " + enemyID, monster, health, attack, defense, location, mapAreaID)
+      }
+    } catch {
+      case e: SQLException => e.printStackTrace();
+    }
   }
-  //method for viewing Rewards in Dungeon
+    //method for viewing Rewards in Dungeon
   def viewRewards(): Unit = {
     var pstmt3 = connection.prepareStatement("SELECT * FROM Reward")
     println("ALl rewards in dungeon are: " + pstmt3)
