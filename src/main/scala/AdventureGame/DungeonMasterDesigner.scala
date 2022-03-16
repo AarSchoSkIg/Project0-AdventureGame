@@ -33,7 +33,7 @@ object DungeonMasterDesigner {
       choice = scala.io.StdIn.readLine()
       while (choice == "1") {
         if (dungeon == "") {
-          dungeonID = dungeonID + 1
+          dungeonID += 1
           println("Enter in the number of monsters to add for this dungeon")
           monster = scala.io.StdIn.readInt()
           println("Enter in the amount of loot to add for this dungeon")

@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="06a5fb4d-8b3d-4145-803f-5940ad33c70f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/AdventureGame/dungeon_table_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/AdventureGame/enemy_table_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/AdventureGame/maparea_table_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/AdventureGame/reward_table_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/AdventureGame/DungeonMasterDesigner.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/AdventureGame/DungeonMasterDesigner.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
